@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#030712">
+<title>SS Internet | Fast. Reliable. Connected.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#030712;--blue:#087cff;--cyan:#00e5ff;--muted:#9aabc2;--glass:rgba(255,255,255,.065);--line:rgba(255,255,255,.13)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{font-family:Inter,'Hind Siliguri',sans-serif;background:var(--bg);color:#f8fbff;overflow-x:hidden}
+body:before,body:after{content:"";position:fixed;width:500px;height:500px;border-radius:50%;filter:blur(150px);opacity:.18;z-index:-1;pointer-events:none}
+body:before{background:#006dff;top:-180px;left:-160px}
+body:after{background:#00d9e8;right:-180px;bottom:-150px}
+a{color:inherit;text-decoration:none}
+.nav{position:fixed;z-index:20;top:16px;left:50%;transform:translateX(-50%);width:min(94%,1180px);padding:13px 18px;display:flex;align-items:center;justify-content:space-between;gap:20px;border:1px solid var(--line);border-radius:20px;background:rgba(8,16,32,.72);backdrop-filter:blur(22px);box-shadow:0 12px 40px #0004}
+.brand{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;white-space:nowrap}
+.brand-mark{display:grid;place-items:center;width:39px;height:39px;border-radius:12px;background:linear-gradient(135deg,#087cff,#00e5ff);box-shadow:0 0 25px #00bfff55}
+.navlinks{display:flex;gap:25px;color:#c6d3e5;font-size:13px}
+.navlinks a:hover{color:white}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:13px;font-weight:700;font-size:13px;background:linear-gradient(120deg,#087cff,#00cce8);box-shadow:0 8px 28px #008cff30;transition:.25s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 35px #008cff55}
+.btn.ghost{background:rgba(255,255,255,.055);border:1px solid var(--line);box-shadow:none}
+.hero{min-height:100vh;display:grid;place-items:center;text-align:center;padding:145px 20px 80px;position:relative}
+.hero-inner{max-width:900px}
+.pill{display:inline-flex;align-items:center;gap:9px;padding:9px 14px;border:1px solid var(--line);border-radius:40px;background:var(--glass);color:#a6eaff;font-size:12px;margin-bottom:24px;backdrop-filter:blur(12px)}
+.dot{height:7px;width:7px;border-radius:50%;background:#24f6a2;box-shadow:0 0 12px #24f6a2}
+h1{font-size:clamp(44px,8vw,86px);line-height:1.05;letter-spacing:-.055em;font-weight:800}
+.gradient{background:linear-gradient(90deg,#fff 5%,#72caff 50%,#00e5ff);background-clip:text;-webkit-background-clip:text;color:transparent}
+.hero p{max-width:660px;margin:24px auto 32px;color:var(--muted);font-size:16px;line-height:1.85}
+.actions{display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
+.orb{position:absolute;border:1px solid #00cfff2b;border-radius:50%;background:#008cff0c;animation:float 6s ease-in-out infinite;pointer-events:none}
+.orb.one{width:90px;height:90px;left:9%;top:29%}.orb.two{width:130px;height:130px;right:9%;bottom:18%;animation-delay:-2s}
+@keyframes float{50%{transform:translateY(-22px)}}
+section{padding:82px 20px}
+.container{width:min(1120px,100%);margin:auto}
+.section-title{text-align:center;margin-bottom:42px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;color:#4bdcff;text-transform:uppercase}
+h2{font-size:clamp(29px,5vw,43px);margin:10px 0}
+.section-title p{color:var(--muted);font-size:14px}
+.glass{background:var(--glass);border:1px solid var(--line);border-radius:23px;backdrop-filter:blur(20px);box-shadow:inset 0 1px #ffffff08,0 18px 45px #0002}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.stat{text-align:center;padding:26px 12px}
+.stat strong{display:block;font-size:30px;color:#70dcff}
+.stat span{display:block;margin-top:7px;color:var(--muted);font-size:12px}
+.packages{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.package{padding:28px;position:relative;transition:.25s}
+.package:hover{transform:translateY(-7px);border-color:#00cfff70}
+.package.featured{border-color:#00cfff80;box-shadow:0 0 45px #008cff18}
+.tag{position:absolute;right:17px;top:17px;font-size:10px;color:#7de9ff;background:#00bfff1c;border-radius:20px;padding:6px 9px;font-weight:800}
+.package-icon,.feature-icon{width:48px;height:48px;display:grid;place-items:center;border-radius:15px;background:#008cff20;font-size:22px;margin-bottom:18px}
+.package h3{font-size:21px}
+.speed{font-size:43px;font-weight:800;margin:13px 0}
+.speed small{font-size:14px;color:var(--muted);font-weight:500}
+.price{font-size:20px;font-weight:700;margin-bottom:20px}
+.price small{font-size:12px;color:var(--muted);font-weight:400}
+.features{list-style:none;border-top:1px solid #ffffff12;padding-top:17px}
+.features li{color:#c0ccdc;font-size:13px;margin:12px 0}
+.features li:before{content:"✓";color:#35e6d2;margin-right:9px}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feature{padding:26px}
+.feature h3{font-size:17px;margin-bottom:10px}
+.feature p{color:var(--muted);font-size:13px;line-height:1.8}
+.payment{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+.payment-copy p{color:var(--muted);line-height:1.8;margin:15px 0 24px}
+.bill{padding:28px}
+.bill-row{display:flex;justify-content:space-between;padding:17px 0;border-bottom:1px solid #ffffff10;font-size:14px}
+.bill-row:last-child{border:0}.bill-row span:first-child{color:var(--muted)}
+.contact{padding:55px 25px;text-align:center;background:radial-gradient(ellipse at top,#008cff20,transparent 60%),var(--glass)}
+.contact p{color:var(--muted);margin:12px 0 25px}
+footer{border-top:1px solid #ffffff12;padding:30px 20px}
+.footer{width:min(1120px,100%);margin:auto;display:flex;justify-content:space-between;align-items:center;gap:20px;color:#73839a;font-size:12px}
+.footer-links{display:flex;gap:18px}
+.float-call{position:fixed;z-index:19;right:20px;bottom:20px;width:56px;height:56px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(135deg,#20c967,#00a884);font-size:23px;box-shadow:0 10px 35px #00b86b55}
+@media(max-width:800px){.navlinks{display:none}.packages,.feature-grid,.payment{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}section{padding:65px 18px}.orb{display:none}.footer{flex-direction:column;text-align:center}.hero{padding-top:130px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="#home"><span class="brand-mark">⚡</span> SS Internet</a>
+  <div class="navlinks"><a href="#home">Home</a><a href="#packages">Packages</a><a href="#features">Why Us</a><a href="#payment">Payment</a><a href="#contact">Contact</a></div>
+  <a class="btn" href="#packages">View Plans ↗</a>
+</nav>
+
+<header class="hero" id="home">
+  <span class="orb one"></span><span class="orb two"></span>
+  <div class="hero-inner">
+    <div class="pill"><span class="dot"></span> High-speed internet service</div>
+    <h1>Fast Internet.<br><span class="gradient">Better Connection.</span></h1>
+    <p>Experience a smoother digital life with SS Internet. Reliable connectivity for streaming, gaming, working and everything you love online.</p>
+    <div class="actions"><a class="btn" href="#packages">Explore Packages →</a><a class="btn ghost" href="tel:+8801817348720">☎ Call Support</a><a class="btn ghost" href="https://wa.me/8801817348720?text=Assalamu%20Alaikum%2C%20SS%20Internet%20support%20chai." target="_blank" rel="noopener">☏ WhatsApp Support</a></div>
+  </div>
+</header>
+
+<section aria-label="Network highlights"><div class="container stats">
+  <div class="glass stat"><strong>99.9%</strong><span>Network Uptime*</span></div>
+  <div class="glass stat"><strong>24/7</strong><span>Customer Support</span></div>
+  <div class="glass stat"><strong>Fast</strong><span>Local Connectivity</span></div>
+  <div class="glass stat"><strong>1 Gbps</strong><span>High-speed capability*</span></div>
+</div></section>
+
+<section id="packages"><div class="container">
+  <div class="section-title"><div class="eyebrow">Internet Packages</div><h2>Choose Your <span class="gradient">Speed</span></h2><p>Simple plans. Powerful connection.</p></div>
+  <div class="packages">
+    <article class="glass package"><div class="package-icon">🌐</div><h3>Basic</h3><div class="speed">30 <small>Mbps</small></div><div class="price">৳500 <small>/ month*</small></div><ul class="features"><li>Unlimited internet*</li><li>BDIX connectivity*</li><li>Customer support</li><li>Router setup assistance</li></ul></article>
+    <article class="glass package featured"><span class="tag">POPULAR</span><div class="package-icon">🚀</div><h3>Premium</h3><div class="speed">50 <small>Mbps</small></div><div class="price">৳700 <small>/ month*</small></div><ul class="features"><li>Unlimited internet*</li><li>High-speed local access*</li><li>Gaming & streaming</li><li>Priority support*</li></ul></article>
+    <article class="glass package"><div class="package-icon">⚡</div><h3>Ultra</h3><div class="speed">100 <small>Mbps</small></div><div class="price">৳1000 <small>/ month*</small></div><ul class="features"><li>Unlimited internet*</li><li>Premium local connectivity*</li><li>Multiple device support</li><li>Priority support*</li></ul></article>
+  </div>
+  <p style="color:#718198;font-size:11px;margin-top:16px">*Demo package prices and service claims—replace with SS Internet's actual offers and terms.</p>
+</div></section>
+
+<section id="features"><div class="container">
+  <div class="section-title"><div class="eyebrow">Why SS Internet</div><h2>Made for Your <span class="gradient">Digital Life</span></h2><p>The connection you need for every moment.</p></div>
+  <div class="feature-grid">
+    <article class="glass feature"><div class="feature-icon">⚡</div><h3>High Speed</h3><p>Enjoy responsive browsing, downloads and streaming with a plan that fits your home.</p></article>
+    <article class="glass feature"><div class="feature-icon">🎮</div><h3>Gaming Ready</h3><p>A connection designed to support your online gaming sessions.</p></article>
+    <article class="glass feature"><div class="feature-icon">🛡️</div><h3>Reliable Network</h3><p>Service-focused support to help keep your connection stable.</p></article>
+    <article class="glass feature"><div class="feature-icon">📡</div><h3>Local Coverage</h3><p>Contact us to check whether SS Internet is available in your area.</p></article>
+    <article class="glass feature"><div class="feature-icon">💬</div><h3>Customer Support</h3><p>Reach our team when you need help with your internet connection.</p></article>
+    <article class="glass feature"><div class="feature-icon">💳</div><h3>Easy Bill Payment</h3><p>Ask our support team about available monthly bill payment methods.</p></article>
+  </div>
+</div></section>
+
+<section id="payment"><div class="container payment">
+  <div class="payment-copy"><div class="eyebrow">Bill & Support</div><h2>Stay Connected.<br><span class="gradient">Pay with Ease.</span></h2><p>Need to pay your bill or ask about a package? Contact SS Internet directly. Our team can guide you through the available payment options.</p><a class="btn" href="tel:+8801817348720">Call to Pay / Ask →</a></div>
+  <div class="glass bill"><div class="bill-row"><span>Service Provider</span><strong>SS Internet</strong></div><div class="bill-row"><span>Support Number</span><strong>01817-348720</strong></div><div class="bill-row"><span>Customer Service</span><strong style="color:#4ce6b5">Contact Us</strong></div></div>
+</div></section>
+
+<section id="contact"><div class="container"><div class="glass contact"><div class="eyebrow">Need Help?</div><h2>Let's Get You <span class="gradient">Connected.</span></h2><p>For new connections, package details or technical support, call SS Internet.</p><a class="btn" href="tel:+8801817348720">☎ Call: 01817-348720</a> <a class="btn ghost" href="https://wa.me/8801817348720?text=Assalamu%20Alaikum%2C%20SS%20Internet%20support%20chai." target="_blank" rel="noopener">WhatsApp Message ↗</a></div></div></section>
+
+<footer><div class="footer"><span>© 2026 SS Internet. All Rights Reserved.</span><div class="footer-links"><a href="#packages">Packages</a><a href="#contact">Contact</a><a href="tel:+8801817348720">Call Us</a></div></div></footer>
+<a class="float-call" href="https://wa.me/8801817348720?text=Assalamu%20Alaikum%2C%20SS%20Internet%20support%20chai." target="_blank" rel="noopener" aria-label="WhatsApp SS Internet" title="WhatsApp Support">☏</a>
+</body>
+</html>
