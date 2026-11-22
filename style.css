@@ -6,3 +6,5 @@
 .developer-credit{width:100%;text-align:center;margin-top:7px;font-size:12px;letter-spacing:1.4px;color:#8296b5}
 .developer-credit span{font-weight:900;background:linear-gradient(90deg,#00d5ff,#7b5cff,#ffb72b);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 12px #00bfff24}
 @media(min-width:721px){footer{flex-wrap:wrap}.developer-credit{flex-basis:100%;order:10}}
+
+.livetv-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:900px;margin:0 auto}.livetv-grid .portal-card{width:100%}@media(max-width:720px){.livetv-grid{grid-template-columns:1fr}}
