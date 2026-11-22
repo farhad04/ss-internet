@@ -1,8 +1,19 @@
 // Mobile menu toggle
 const menuToggle = document.getElementById('menuToggle');
 const mainNav = document.getElementById('mainNav');
-menuToggle?.addEventListener('click', () => mainNav.classList.toggle('open'));
-mainNav?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => mainNav.classList.remove('open')));
+function setMenuOpen(open){mainNav?.classList.toggle('open',open);document.body.classList.toggle('menu-open',open);menuToggle?.setAttribute('aria-expanded',String(open));}
+menuToggle?.addEventListener('click', () => setMenuOpen(!mainNav?.classList.contains('open')));
+mainNav?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenuOpen(false)));
+
+// Hero banner slider: alternate the original banner and Refer & Earn banner.
+const heroSlides=[...document.querySelectorAll('.hero-banner-slide')];
+const heroDots=[...document.querySelectorAll('.hero-banner-dot')];
+let heroIndex=0;
+function showHeroBanner(i){if(!heroSlides.length)return;heroIndex=(i+heroSlides.length)%heroSlides.length;heroSlides.forEach((slide,n)=>slide.classList.toggle('active',n===heroIndex));heroDots.forEach((dot,n)=>dot.classList.toggle('active',n===heroIndex));}
+heroDots.forEach(dot=>dot.addEventListener('click',()=>showHeroBanner(Number(dot.dataset.banner))));
+document.querySelector('.hero-banner-arrow.prev')?.addEventListener('click',()=>showHeroBanner(heroIndex-1));
+document.querySelector('.hero-banner-arrow.next')?.addEventListener('click',()=>showHeroBanner(heroIndex+1));
+if(heroSlides.length>1){window.setInterval(()=>showHeroBanner(heroIndex+1),6000);}
 
 // Offer popup: show once ever per browser using persistent localStorage.
 // Set the seen flag immediately, so refreshing cannot trigger it again.
@@ -28,7 +39,7 @@ function hidePopup() {
 }
 closePopup?.addEventListener('click', hidePopup);
 popup?.addEventListener('click', event => { if (event.target === popup) hidePopup(); });
-document.addEventListener('keydown', event => { if (event.key === 'Escape') hidePopup(); });
+document.addEventListener('keydown', event => { if (event.key === 'Escape') { hidePopup(); setMenuOpen(false); } });
 
 // Offers slider, cycling automatically with manual dots.
 const slides = [...document.querySelectorAll('.offer-slide')];
@@ -48,25 +59,3 @@ function openWhatsAppMessage(message){window.open('https://wa.me/8801817348720?t
 document.getElementById('connectionForm')?.addEventListener('submit',e=>{e.preventDefault();const d=new FormData(e.currentTarget);openWhatsAppMessage(`SS Internet New Connection Request\nName: ${d.get('name')}\nPhone: ${d.get('phone')}\nAddress: ${d.get('address')}\nPackage: ${d.get('package')}`);});
 document.getElementById('complaintForm')?.addEventListener('submit',e=>{e.preventDefault();const d=new FormData(e.currentTarget);openWhatsAppMessage(`SS Internet Complaint\nName: ${d.get('name')}\nPhone: ${d.get('phone')}\nIssue: ${d.get('issue')}\nDetails: ${d.get('details')||'Not specified'}`);});
 
-// Admin editor: demo-local storage, but applies Notice and Offer text to visible page.
-const unlockBtn = document.getElementById('adminUnlock');
-const adminEditor = document.getElementById('adminEditor');
-const pinInput = document.getElementById('adminPin');
-unlockBtn?.addEventListener('click', () => {
-  if (pinInput?.value === '2468') { adminEditor?.classList.remove('hidden'); pinInput.value = ''; loadSiteContent(); }
-  else alert('PIN ভুল। Demo PIN: 2468');
-});
-const noticeTitleInput = document.getElementById('noticeTitle');
-const noticeMessageInput = document.getElementById('noticeMessage');
-const offerTextInput = document.getElementById('offerText');
-const saveContentBtn = document.getElementById('saveSiteContent');
-const resetContentBtn = document.getElementById('resetSiteContent');
-function applySiteContent(c) {
-  const firstNotice = document.querySelector('#notices .notice-card');
-  if (firstNotice) { const h=firstNotice.querySelector('h3'); const q=firstNotice.querySelector('p'); if(h && c.noticeTitle) h.textContent=c.noticeTitle; if(q && c.noticeMessage) q.textContent=c.noticeMessage; }
-  const offerIntro=document.querySelector('#offers .section-heading > p:last-child'); if(offerIntro && c.offerText) offerIntro.textContent=c.offerText;
-}
-function loadSiteContent(){ try { const c=JSON.parse(localStorage.getItem('ssInternetSiteContentDemo')||'{}'); if(noticeTitleInput)noticeTitleInput.value=c.noticeTitle||''; if(noticeMessageInput)noticeMessageInput.value=c.noticeMessage||''; if(offerTextInput)offerTextInput.value=c.offerText||''; applySiteContent(c); } catch(e){} }
-saveContentBtn?.addEventListener('click', () => { const c={noticeTitle:noticeTitleInput?.value||'',noticeMessage:noticeMessageInput?.value||'',offerText:offerTextInput?.value||''}; try{localStorage.setItem('ssInternetSiteContentDemo',JSON.stringify(c));applySiteContent(c);alert('Saved এবং Notice/Offer আপডেট হয়েছে (এই ব্রাউজারে)।');}catch(e){alert('সেভ করা যায়নি।');} });
-resetContentBtn?.addEventListener('click', () => { try{localStorage.removeItem('ssInternetSiteContentDemo');}catch(e){} if(noticeTitleInput)noticeTitleInput.value='';if(noticeMessageInput)noticeMessageInput.value='';if(offerTextInput)offerTextInput.value='';alert('Demo content reset হয়েছে। পেজ রিফ্রেশ করে মূল কনটেন্ট দেখুন।');location.reload(); });
-loadSiteContent();

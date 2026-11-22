@@ -27,3 +27,30 @@
 
 /* Screenshot-inspired Fast.com speed test card */
 .fast-card{max-width:640px;margin:0 auto;padding:48px 28px 42px;min-height:440px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border-radius:30px;border:1px solid #28648d;background:linear-gradient(155deg,#102f4e,#071d36);box-shadow:0 16px 38px #0002;gap:18px}.fast-mark{font-size:58px;font-weight:900;color:#00c9f2;line-height:1;margin-bottom:12px;transform:rotate(-5deg)}.fast-card h3{font-size:clamp(24px,4vw,38px);margin:0;color:#f3f7ff}.fast-card p{font-size:clamp(16px,3vw,24px);line-height:1.55;color:#afc4dd;max-width:520px;margin:8px auto 26px}.fast-start{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:18px 38px;background:linear-gradient(110deg,#008dff,#00c8ed);color:#071b33;font-weight:800;font-size:20px;text-decoration:none;box-shadow:0 8px 24px #009ef544;transition:transform .2s,filter .2s}.fast-start:hover{transform:translateY(-2px);filter:brightness(1.08)}@media(max-width:600px){.fast-card{padding:34px 22px;min-height:390px;border-radius:24px}.fast-start{font-size:18px;padding:16px 28px}.fast-mark{font-size:50px}}
+
+.refer-banner-wrap{max-width:1120px;margin:0 auto;text-align:center;}
+.refer-banner-wrap a{display:block;}
+.refer-banner-img{display:block;width:100%;height:auto;border:1px solid #16b9ed;border-radius:22px;box-shadow:0 0 30px #00baff24;}
+.refer-banner-caption{color:var(--muted);font-size:clamp(15px,2vw,20px);line-height:1.6;margin:18px 8px 0;}
+.refer-banner-caption strong{color:#00d5ff;}
+@media(max-width:720px){.refer-banner-img{border-radius:14px}.refer-banner-caption{margin-top:12px;}}
+
+/* Hero banners: rotate original banner and referral banner */
+.hero-banner-slider{position:relative;width:100%;overflow:hidden;border-radius:20px;}
+.hero-banner-slide{display:none;}
+.hero-banner-slide.active{display:block;animation:heroBannerFade .45s ease;}
+.hero-banner-slide img{display:block;width:100%;height:auto;object-fit:cover;border-radius:20px;border:1px solid #13a8ff77;box-shadow:0 0 35px #007aff33;}
+.hero-banner-arrow{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:1px solid #36c9ff;background:#061b34b8;color:#fff;font-size:28px;line-height:1;cursor:pointer;backdrop-filter:blur(8px);}
+.hero-banner-arrow.prev{left:12px}.hero-banner-arrow.next{right:12px}
+.hero-banner-dots{position:absolute;bottom:12px;left:0;right:0;display:flex;justify-content:center;gap:9px}
+.hero-banner-dot{width:10px;height:10px;border:0;border-radius:20px;background:#6b91ad;cursor:pointer;padding:0}
+.hero-banner-dot.active{width:25px;background:linear-gradient(90deg,#00bfff,#00e0d0)}
+@keyframes heroBannerFade{from{opacity:.45;transform:translateX(8px)}to{opacity:1;transform:translateX(0)}}
+/* Mobile menu: restore vertical dropdown with its own scroll area */
+@media(max-width:720px){
+ body.menu-open{overflow:hidden;}
+ #mainNav.open{display:flex;position:absolute;top:100%;left:0;right:0;bottom:auto;width:100%;max-height:min(72dvh,560px);overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;touch-action:pan-y;-webkit-overflow-scrolling:touch;z-index:100;padding:12px 16px 18px;background:linear-gradient(165deg,#071e39f7,#03152dfb);border:1px solid #176e9b;border-top:0;border-radius:0 0 18px 18px;box-shadow:0 0 0 100vmax #0008;flex-direction:column;align-items:stretch;gap:2px;}
+ #mainNav.open a{display:block;flex:0 0 auto;padding:13px 12px;border-radius:10px;}
+ #mainNav.open a:hover{background:#0d2c4c;}
+}
+@media(max-width:720px){.hero-banner-slider,.hero-banner-slide img{border-radius:12px}.hero-banner-arrow{width:34px;height:34px;font-size:23px}.hero-banner-dots{bottom:8px}}
